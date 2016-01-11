@@ -4,7 +4,8 @@ angular.module('app.controllers', []).controller('ShipwreckListController', func
   $scope.deleteShipwreck = function(shipwreck) { // Delete a Shipwreck. Issues a DELETE to /api/v1/shipwrecks/:id
     if (popupService.showPopup('Really delete this?')) {
       shipwreck.$delete(function() {
-        $window.location.href = ''; //redirect to home
+        $scope.shipwrecks = Shipwreck.query(); 
+        $state.go('shipwrecks');
       });
     }
   };
